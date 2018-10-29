@@ -4,6 +4,7 @@
 
 
 #how to use it
+
 allprojects {
 		repositories {
 			...
@@ -12,6 +13,15 @@ allprojects {
 }
 
 implementation 'com.github.graychens:jikPlayer:Tag'
+
+<ijkplayer.graychen.com.videoview.widget.media.IjkVideoView
+    android:id="@+id/video_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+        IjkVideoView  mVideoView = (IjkVideoView) findViewById(R.id.video_view);
+        mVideoView.setVideoPath("rtsp://192.168.10.239:50000/video");
+        mVideoView.start();
 
   
   
