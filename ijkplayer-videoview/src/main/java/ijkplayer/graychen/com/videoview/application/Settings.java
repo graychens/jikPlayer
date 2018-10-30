@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 
 import ijkplayer.graychen.com.videoview.R;
 
+
 public class Settings {
     private Context mAppContext;
     private SharedPreferences mSharedPreferences;
@@ -69,7 +70,7 @@ public class Settings {
 
     public boolean getUsingOpenSLES() {
         String key = mAppContext.getString(R.string.pref_key_using_opensl_es);
-        return mSharedPreferences.getBoolean(key, false);
+        return mSharedPreferences.getBoolean(key, true);
     }
 
     public String getPixelFormat() {
