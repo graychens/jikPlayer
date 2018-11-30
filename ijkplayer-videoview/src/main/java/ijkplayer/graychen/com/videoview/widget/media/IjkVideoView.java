@@ -251,7 +251,11 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
      *
      */
     public String  getVideoPath() {
-        return mUri.toString();
+        if (mUri!=null) {
+            return mUri.toString();
+
+        }
+        return "";
     }
 
     /**
