@@ -33,6 +33,6 @@ ext {
 
     targetSdkVersion = 24
     minSdkVersion = 14
-    versionCode = 3
-    versionName = "1.2.1" // 基于jikplayer 0.8.8版本编译
+    versionCode = 4
+    versionName = "1.2.2" // 基于jikplayer 0.8.8版本编译
 }

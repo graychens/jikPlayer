@@ -31,13 +31,16 @@ public class MainActivity extends AppCompatActivity {
         button4 = (Button) findViewById(R.id.button4);
         button5 = (Button) findViewById(R.id.button5);
 
-        mVideoView.setVideoPath("rtsp://192.168.10.238:50000/video");
-        mVideoView2.setVideoPath("rtsp://192.168.10.239:50000/video");
+        mVideoView.setVideoPath("rtsp://192.168.10.23:50000/video");
+        mVideoView2.setVideoPath("rtsp://192.168.10.29:50000/video");
+        mVideoView2.getVideoPath();
         mVideoView.start();
         mVideoView2.start();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("MainActivity","mVideoView.getVideoPath():"+mVideoView.getVideoPath());
+
                 SettingsActivity.intentTo(MainActivity.this);
 
             }
