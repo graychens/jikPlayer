@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ijkplayer.graychen.com.videoview.R;
@@ -49,6 +50,9 @@ public class VideoBitmapView extends FrameLayout {
         ijkVideoView = new IjkVideoView(context);
         imageView = new ImageView(context);
         imageView.setVisibility(GONE);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        imageView.setLayoutParams(layoutParams);
         FrameLayout.LayoutParams layoutParams_txt = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT,
