@@ -2,6 +2,7 @@ package ijkplayer.graychen.com.videoview.widget.media;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -51,11 +52,12 @@ public class VideoBitmapView extends FrameLayout {
         imageView = new ImageView(context);
         imageView.setVisibility(GONE);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+                LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
         imageView.setLayoutParams(layoutParams);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         FrameLayout.LayoutParams layoutParams_txt = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT,
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT,
                 Gravity.CENTER);
         addView(imageView, layoutParams_txt);
         addView(ijkVideoView, layoutParams_txt);

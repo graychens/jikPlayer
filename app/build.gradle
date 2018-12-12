@@ -27,6 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 //    implementation 'com.github.graychens.jikPlayer:ijkplayer-videoview:v1.3.3'
 
-        implementation project(':ijkplayer-videoview')
+    implementation project(':ijkplayer-videoview')
     implementation project(path: ':ijkplayer-java')
 }

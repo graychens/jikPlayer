@@ -1,6 +1,8 @@
 package ijkplayer.graychen.com.ijkplayerdemo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
         mVideoView =  findViewById(R.id.video_view);
+        mVideoView.setType(1);
         mVideoView2 =  findViewById(R.id.video_view2);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -41,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 SettingsActivity.intentTo(MainActivity.this);
 
             }
@@ -50,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 立即同步
-                mVideoView2.togglePlayer();
+//                mVideoView2.togglePlayer();
+                Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.test );
+                mVideoView.setBitmap(bmp);
 
             }
         });
@@ -70,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mVideoView.togglePlayer();
-
+//                mVideoView.togglePlayer();
+                Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.test2 );
+                mVideoView.setBitmap(bmp);
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
