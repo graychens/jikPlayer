@@ -7,10 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import ijkplayer.graychen.com.videoview.R;
 
@@ -30,6 +32,7 @@ public class VideoBitmapView extends FrameLayout {
         initView(context);
     }
 
+
     public VideoBitmapView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
@@ -42,9 +45,19 @@ public class VideoBitmapView extends FrameLayout {
     }
 
     private void initView(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_video_bitmap, this,true);
-        ijkVideoView = view.findViewById(R.id.video);
-        imageView = view.findViewById(R.id.image);
+
+        ijkVideoView = new IjkVideoView(context);
+        imageView = new ImageView(context);
+        imageView.setVisibility(GONE);
+        FrameLayout.LayoutParams layoutParams_txt = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER);
+        addView(imageView, layoutParams_txt);
+        addView(ijkVideoView, layoutParams_txt);
+//        View view = LayoutInflater.from(context).inflate(R.layout.layout_video_bitmap, this,true);
+//        ijkVideoView = view.findViewById(R.id.video);
+//        imageView = view.findViewById(R.id.image);
     }
 
     /**
