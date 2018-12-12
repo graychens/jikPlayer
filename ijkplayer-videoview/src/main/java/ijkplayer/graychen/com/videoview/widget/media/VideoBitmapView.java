@@ -17,13 +17,22 @@ public class VideoBitmapView extends FrameLayout {
     private ImageView imageView;
     private int mType; //  0 ：RTSP流 使用ijkVideoView  1：JPEG流 使用imageView 。默认为RTSP流
     private boolean receiveData = false; // 是否接收JPEG流数据
-    public VideoBitmapView( Context context) {
-        super(context,null);
 
+    public VideoBitmapView(@NonNull Context context) {
+        super(context);
+        initView(context);
     }
 
     public VideoBitmapView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initView(context);
+    }
+
+    public VideoBitmapView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+    private void initView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_video_bitmap, this,true);
         ijkVideoView = view.findViewById(R.id.video);
         imageView = view.findViewById(R.id.image);
