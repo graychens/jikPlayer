@@ -11,7 +11,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_constraintGuide_percent="0.5" />
-<ijkplayer.graychen.com.videoview.widget.media.IjkVideoView
+<ijkplayer.graychen.com.videoview.widget.media.VideoBitmapView
     android:id="@+id/video_view"
     android:layout_width="0dp"
     android:layout_height="0dp"
@@ -19,7 +19,7 @@
     app:layout_constraintEnd_toEndOf="@+id/line"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
-    <ijkplayer.graychen.com.videoview.widget.media.IjkVideoView
+    <ijkplayer.graychen.com.videoview.widget.media.VideoBitmapView
         android:id="@+id/video_view2"
         android:layout_width="0dp"
         android:layout_height="0dp"

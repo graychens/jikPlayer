@@ -9,12 +9,13 @@ import android.widget.Button;
 
 import ijkplayer.graychen.com.videoview.activities.SettingsActivity;
 import ijkplayer.graychen.com.videoview.widget.media.IjkVideoView;
+import ijkplayer.graychen.com.videoview.widget.media.VideoBitmapView;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
-    private IjkVideoView  mVideoView;
-    private IjkVideoView  mVideoView2;
+    private VideoBitmapView mVideoView;
+    private VideoBitmapView  mVideoView2;
     private Button button,button2,button3,button4,button5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +24,20 @@ public class MainActivity extends AppCompatActivity {
         // init player
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
-        mVideoView = (IjkVideoView) findViewById(R.id.video_view);
-        mVideoView2 = (IjkVideoView) findViewById(R.id.video_view2);
+        mVideoView =  findViewById(R.id.video_view);
+        mVideoView2 =  findViewById(R.id.video_view2);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
         button5 = (Button) findViewById(R.id.button5);
 
-        mVideoView.setVideoPath("rtsp://192.168.10.238:50000/video");
-        mVideoView2.setVideoPath("rtsp://192.168.10.239:50000/video");
-        mVideoView2.getVideoPath();
-        mVideoView.start();
-        mVideoView2.start();
+//        mVideoView.setVideoPath("rtsp://192.168.10.238:50000/video");
+//        mVideoView2.setVideoPath("rtsp://192.168.10.239:50000/video");
+
+        mVideoView.startPlay("rtsp://192.168.10.238:50000/video");
+        mVideoView2.startPlay("rtsp://192.168.10.239:50000/video");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,11 +60,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("MainActivity","mVideoView2-isPlaying:"+mVideoView2.isPlaying());
 
-                mVideoView2.stopPlayback();
+                mVideoView2.stopPlay();
                 Log.d("MainActivity","mVideoView2-isPlaying:"+mVideoView2.isPlaying());
 
-                mVideoView2.setVideoPath("rtsp://192.168.10.239:50000/video");
-                mVideoView2.start();
+                mVideoView2.startPlay("rtsp://192.168.10.239:50000/video");
 
             }
         });
@@ -77,72 +78,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("MainActivity","mVideoView-isPlaying:"+mVideoView.isPlaying());
-                mVideoView.stopPlayback();
-                Log.d("MainActivity","mVideoView-isPlaying:"+mVideoView.isPlaying()+" "+mVideoView.getVideoPath());
+                mVideoView.stopPlay();
+                Log.d("MainActivity","mVideoView-isPlaying:"+mVideoView.isPlaying());
 
-                mVideoView.setVideoPath("rtsp://192.168.10.238:50000/video");
-                mVideoView.start();
-
-            }
-        });
-
-        mVideoView2.setOnErrorListener(new IMediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(IMediaPlayer mp, int what, int extra) {
-                Log.d("MainActivity","视频2-onError what:"+what+" extra:"+extra);
-                return false;
-            }
-        });
-        mVideoView.setOnErrorListener(new IMediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(IMediaPlayer mp, int what, int extra) {
-                Log.d("MainActivity","视频1-onError what:"+what+" extra:"+extra);
-                return false;
-            }
-        });
-
-        mVideoView2.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(IMediaPlayer mp) {
-                Log.d("MainActivity","视频2-onCompletion");
-            }
-        });
-        mVideoView.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(IMediaPlayer mp) {
-                Log.d("MainActivity","视频1-onCompletion");
-            }
-        });
-
-        mVideoView2.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(IMediaPlayer mp) {
-                Log.d("MainActivity","视频2-onPrepared");
-
-            }
-        });
-        mVideoView.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(IMediaPlayer mp) {
-                Log.d("MainActivity","视频1-onPrepared");
+                mVideoView.startPlay("rtsp://192.168.10.238:50000/video");
+//                mVideoView.start();
 
             }
         });
 
-        mVideoView.setOnInfoListener(new IMediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(IMediaPlayer mp, int what, int extra) {
-                Log.d("MainActivity","视频1-onInfo what:"+what+" extra:"+extra);
-                return false;
-            }
-        });
-        mVideoView2.setOnInfoListener(new IMediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(IMediaPlayer mp, int what, int extra) {
-                Log.d("MainActivity","视频2-onInfo what:"+what+" extra:"+extra);
-                return false;
-            }
-        });
+
+
     }
 
     private boolean mBackPressed;
@@ -150,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         mBackPressed = true;
-
         super.onBackPressed();
     }
 
@@ -158,13 +103,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        if (mBackPressed ) {
-            mVideoView.stopPlayback();
-            mVideoView.release(true);
-            mVideoView.stopBackgroundPlay();
-        } else {
-            mVideoView.enterBackground();
-        }
-        IjkMediaPlayer.native_profileEnd();
+//        if (mBackPressed ) {
+//            mVideoView.stopPlay();
+//        } else {
+//            mVideoView.enterBackground();
+//        }
+//        IjkMediaPlayer.native_profileEnd();
     }
 }

@@ -40,7 +40,8 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.MediaInfo;
 import tv.danmaku.ijk.media.player.misc.IjkTrackInfo;
 
-public class IjkExoMediaPlayer extends AbstractMediaPlayer {
+public class
+IjkExoMediaPlayer extends AbstractMediaPlayer {
     private Context mAppContext;
     private DemoPlayer mInternalPlayer;
     private EventLogger mEventLogger;
