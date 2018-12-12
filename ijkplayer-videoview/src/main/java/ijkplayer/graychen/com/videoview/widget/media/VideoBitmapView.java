@@ -2,8 +2,10 @@ package ijkplayer.graychen.com.videoview.widget.media;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,13 @@ public class VideoBitmapView extends FrameLayout {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public VideoBitmapView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView(context);
+    }
+
     private void initView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_video_bitmap, this,true);
         ijkVideoView = view.findViewById(R.id.video);
