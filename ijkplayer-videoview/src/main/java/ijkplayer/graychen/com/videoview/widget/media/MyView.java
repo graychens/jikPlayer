@@ -36,17 +36,23 @@ public class MyView extends android.support.v7.widget.AppCompatImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
         //1. 创建缓冲画布
         Canvas bufferCanvas = new Canvas();
         //2. 创建缓存Bitmap
 //        Bitmap bufferBitmap = Bitmap.createBitmap(200,200, Bitmap.Config.ARGB_8888);
+
         Bitmap bufferBitmap = this.map;
         //3. 将缓冲位图设置给缓冲画布
-        bufferCanvas.setBitmap(bufferBitmap);
-        //4. 在缓冲画布上绘制真实的位图
-        bufferCanvas.drawBitmap(bufferBitmap, 0, 0, null);
-        //5. 用屏幕的画布绘制缓冲位图
-        canvas.drawBitmap(bufferBitmap,0,0, null);
+        if (bufferBitmap!=null) {
+
+//            bufferCanvas.setBitmap(bufferBitmap);
+            //4. 在缓冲画布上绘制真实的位图
+            bufferCanvas.drawBitmap(bufferBitmap, 0, 0, null);
+            //5. 用屏幕的画布绘制缓冲位图
+            canvas.drawBitmap(bufferBitmap,0,0, null);
+        }
 
     }
 }
