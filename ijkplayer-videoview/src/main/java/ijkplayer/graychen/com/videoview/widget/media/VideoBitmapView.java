@@ -20,7 +20,7 @@ import ijkplayer.graychen.com.videoview.R;
 
 public class VideoBitmapView extends FrameLayout {
     private IjkVideoView ijkVideoView;
-    private ImageView imageView;
+    private MyView imageView;
     private int mType; //  0 ：RTSP流 使用ijkVideoView  1：JPEG流 使用imageView 。默认为RTSP流
     private boolean receiveData = false; // 是否接收JPEG流数据
 
@@ -49,7 +49,7 @@ public class VideoBitmapView extends FrameLayout {
     private void initView(Context context) {
 
         ijkVideoView = new IjkVideoView(context);
-        imageView = new ImageView(context);
+        imageView = new MyView(context);
         imageView.setVisibility(GONE);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
@@ -86,7 +86,8 @@ public class VideoBitmapView extends FrameLayout {
      */
     public void setBitmap(Bitmap bitmap){
         if (mType==1 && receiveData) {
-            imageView.setImageBitmap(bitmap);
+//            imageView.setImageBitmap(bitmap);
+            imageView.setBitMap(bitmap);
             imageView.invalidate();
         }
     }
