@@ -82,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("MainActivity","mVideoView-isPlaying:"+mVideoView.isPlaying());
-                mVideoView.stopPlay();
-                Log.d("MainActivity","mVideoView-isPlaying:"+mVideoView.isPlaying());
+//                mVideoView.stopPlay();
+//                mVideoView.startPlay("rtsp://192.168.10.238:50000/video");
+                Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.test3 );
 
-                mVideoView.startPlay("rtsp://192.168.10.238:50000/video");
-//                mVideoView.start();
+                mVideoView.setBitmap(bmp);
+
 
             }
         });

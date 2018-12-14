@@ -3,6 +3,7 @@ package ijkplayer.graychen.com.videoview.widget.media;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,7 +21,7 @@ import ijkplayer.graychen.com.videoview.R;
 
 public class VideoBitmapView extends FrameLayout {
     private IjkVideoView ijkVideoView;
-    private MyView imageView;
+    private MySurfaceView surfaceView;
     private int mType; //  0 ：RTSP流 使用ijkVideoView  1：JPEG流 使用imageView 。默认为RTSP流
     private boolean receiveData = false; // 是否接收JPEG流数据
 
@@ -45,21 +46,19 @@ public class VideoBitmapView extends FrameLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
         initView(context);
     }
-
     private void initView(Context context) {
 
         ijkVideoView = new IjkVideoView(context);
-        imageView = new MyView(context);
-        imageView.setVisibility(GONE);
+        surfaceView = new MySurfaceView(context);
+        surfaceView.setVisibility(GONE);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-        imageView.setLayoutParams(layoutParams);
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        surfaceView.setLayoutParams(layoutParams);
         FrameLayout.LayoutParams layoutParams_txt = new FrameLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT,
                 Gravity.CENTER);
-        addView(imageView, layoutParams_txt);
+        addView(surfaceView, layoutParams_txt);
         addView(ijkVideoView, layoutParams_txt);
 //        View view = LayoutInflater.from(context).inflate(R.layout.layout_video_bitmap, this,true);
 //        ijkVideoView = view.findViewById(R.id.video);
@@ -76,19 +75,24 @@ public class VideoBitmapView extends FrameLayout {
             ijkVideoView.setVideoPath(path);
             ijkVideoView.start();
         } else {
-            receiveData = true;
+            startPlay();
         }
     }
+    public void startPlay(){
+        receiveData = true;
 
+    }
     /**
      * 图片流才有的方法，设置图片
      * @param bitmap
      */
     public void setBitmap(Bitmap bitmap){
         if (mType==1 && receiveData) {
-//            imageView.setImageBitmap(bitmap);
-            imageView.setBitMap(bitmap);
-            imageView.invalidate();
+            surfaceView.setBitMap(bitmap);
+
+//            imageView.setBitMap(bitmap);
+//            imageView.invalidate();
+
         }
     }
     /**
@@ -127,14 +131,15 @@ public class VideoBitmapView extends FrameLayout {
     public void setType (int type) {
         this.mType = type;
         if (type==1) {
-            imageView.setVisibility(VISIBLE);
+            surfaceView.setVisibility(VISIBLE);
             ijkVideoView.stopPlayback();
             ijkVideoView.release(true);
             ijkVideoView.stopBackgroundPlay();
             ijkVideoView.setVisibility(GONE);
         } else {
-            imageView.setVisibility(GONE);
+            surfaceView.setVisibility(GONE);
             ijkVideoView.setVisibility(VISIBLE);
+
         }
     }
 
